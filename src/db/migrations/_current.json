@@ -1,0 +1,161 @@
+{
+    "tables": {
+        "Users": {
+            "tableName": "Users",
+            "schema": {
+                "id": {
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "DataType.INTEGER"
+                },
+                "name": {
+                    "field": "name",
+                    "seqType": "DataType.STRING"
+                },
+                "email": {
+                    "field": "email",
+                    "seqType": "DataType.STRING"
+                },
+                "password": {
+                    "field": "password",
+                    "seqType": "DataType.STRING"
+                },
+                "isGuest": {
+                    "field": "isGuest",
+                    "seqType": "DataType.BOOLEAN"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "DataType.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "DataType.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Points": {
+            "tableName": "Points",
+            "schema": {
+                "id": {
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "DataType.INTEGER"
+                },
+                "point": {
+                    "field": "point",
+                    "seqType": "DataType.INTEGER"
+                },
+                "idUser": {
+                    "field": "idUser",
+                    "allowNull": true,
+                    "name": "idUser",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "DataType.INTEGER"
+                },
+                "idSession": {
+                    "field": "idSession",
+                    "allowNull": true,
+                    "name": "idSession",
+                    "references": {
+                        "model": "Sessions",
+                        "key": "id"
+                    },
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "DataType.INTEGER"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "DataType.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "DataType.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "SessionUsers": {
+            "tableName": "SessionUsers",
+            "schema": {
+                "idSession": {
+                    "field": "idSession",
+                    "name": "idSession",
+                    "primaryKey": true,
+                    "references": {
+                        "model": "Sessions",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "unique": "SessionUsers_idSession_idUser_unique",
+                    "seqType": "DataType.INTEGER"
+                },
+                "idUser": {
+                    "field": "idUser",
+                    "name": "idUser",
+                    "primaryKey": true,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "unique": "SessionUsers_idSession_idUser_unique",
+                    "seqType": "DataType.INTEGER"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "DataType.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "DataType.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Sessions": {
+            "tableName": "Sessions",
+            "schema": {
+                "id": {
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "DataType.INTEGER"
+                },
+                "code": {
+                    "field": "code",
+                    "seqType": "DataType.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "DataType.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "DataType.DATE"
+                }
+            },
+            "indexes": []
+        }
+    },
+    "revision": 1
+}
